@@ -5,18 +5,17 @@ var fotoForm = document.querySelector('.upload-overlay'); // сами фото
 var uploadFile = document.querySelector('#upload-file'); // загрузка
 var fotoFormClose = fotoForm.querySelector('#upload-cancel'); // крестик закрытия
 
-var toggleFormClass = function () {
+var toggle = function () {
     uploadForm.classList.toggle('invisible');
     fotoForm.classList.toggle('invisible');
   }
 
-var openOrClose = function (event, eventName) {
-  event.addEventListener(eventName,toggleFormClass);
+function openOrClose() {
+  uploadFile.addEventListener('change', toggle);
+  fotoFormClose.addEventListener('click',toggle);
 };
 
-openOrClose(uploadFile, 'change');
-openOrClose(fotoFormClose, 'click');
-
+openOrClose();
 
 //Фильтры
 var uploadSection = document.querySelector('.upload');
@@ -28,27 +27,56 @@ var filterPhobos = uploadSection.querySelector('#upload-filter-phobos');
 var filterHeat = uploadSection.querySelector('#upload-filter-heat');
 var imgPreview = uploadSection.querySelector('.filter-image-preview');
 
+var allFilters = ['filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat' ]
+
 filterNone.addEventListener('click', function () {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
+  imgPreview.classList.remove(allFilters);
   imgPreview.classList.add('filter-none');
 });
 filterChrome.addEventListener('click', function () {
-  imgPreview.classList.remove('filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
+  imgPreview.classList.remove(allFilters);
   imgPreview.classList.add('filter-chrome');
 });
 filterSepia.addEventListener('click', function () {
-  imgPreview.classList.remove('filter-chrome', 'filter-marvin', 'filter-phobos', 'filter-heat');
+  imgPreview.classList.remove(allFilters);
   imgPreview.classList.add('filter-sepia');
 });
 filterMarvin.addEventListener('click', function () {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-phobos', 'filter-heat');
+  imgPreview.classList.remove(allFilters);
   imgPreview.classList.add('filter-marvin');
 });
 filterPhobos.addEventListener('click', function () {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-heat');
+  imgPreview.classList.remove(allFilters);
   imgPreview.classList.add('filter-phobos');
 });
 filterHeat.addEventListener('click', function () {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-phobos', 'filter-marvin');
+  imgPreview.classList.remove(allFilters);
   imgPreview.classList.add('filter-heat');
+});
+
+var resizeValue = fotoForm.querySelector('.upload-resize-controls-value');
+var resizeValueDec = fotoForm.querySelector('.upload-resize-controls-button-dec');
+var resizeValueInc = fotoForm.querySelector('.upload-resize-controls-button-inc');
+
+var resizeNumber = 100;
+resizeValue.value = resizeNumber + '%';
+
+var valueScaleChange = function () {
+  var scaleNumber = resizeNumber / 100;
+  resizeValue.value = resizeNumber + '%';
+  imgPreview.style.transform = 'scale(' + scaleNumber + ')';
+};
+
+resizeValueDec.addEventListener('click', function () {
+  if (resizeNumber > 25) {
+    resizeNumber = resizeNumber - 25;
+    valueScaleChange();
+  }
+});
+
+resizeValueInc.addEventListener('click', function () {
+  if (resizeNumber < 100) {
+    resizeNumber = resizeNumber + 25;
+    valueScaleChange();
+  }
 });
