@@ -5,17 +5,17 @@ var fotoForm = document.querySelector('.upload-overlay'); // сами фото
 var uploadFile = document.querySelector('#upload-file'); // загрузка
 var fotoFormClose = fotoForm.querySelector('#upload-cancel'); // крестик закрытия
 
-var toggle = function () {
+var toggleControlsVisibility = function () {
     uploadForm.classList.toggle('invisible');
     fotoForm.classList.toggle('invisible');
   }
 
-function openOrClose() {
-  uploadFile.addEventListener('change', toggle);
-  fotoFormClose.addEventListener('click',toggle);
+function addOpenCloseHandlers() {
+  uploadFile.addEventListener('change', toggleControlsVisibility);
+  fotoFormClose.addEventListener('click',toggleControlsVisibility);
 };
 
-openOrClose();
+addOpenCloseHandlers();
 
 //Фильтры
 var uploadSection = document.querySelector('.upload');
