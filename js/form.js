@@ -7,7 +7,6 @@ var fotoFormClose = fotoForm.querySelector('#upload-cancel'); // крестик 
 var ENTER_KEY_CODE = 13;
 var ESC_KEY_CODE = 27;
 
-
 function enterPressed(evt) {
     return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
 }
@@ -22,64 +21,61 @@ function toggleSetup() {
     if (fotoForm.classList.contains('invisible')) {
         fotoForm.classList.remove('invisible');
         document.addEventListener('keydown', setupEscEvent);
-
     } else {
         fotoForm.classList.add('invisible');
         document.removeEventListener('keydown', setupEscEvent);
-
     }
 }
 
-
 uploadForm.addEventListener('change', toggleSetup);
-
 fotoFormClose.addEventListener('click', toggleSetup);
 
+//------------------------------фильтры---------------------------------------
 
-//Фильтры
+var uploadOverlay = document.querySelector('.upload-overlay');
+var filterImagePreview = uploadOverlay.querySelector('.filter-image-preview');
+var uploadFilterControls = uploadOverlay.querySelector('.upload-filter-controls');
+
+var dictionary = {
+  'upload-filter-chrome': 'filter-chrome',
+  'upload-filter-none': 'filter-none',
+  'upload-filter-sepia': 'filter-sepia',
+  'upload-filter-marvin': 'filter-marvin',
+  'upload-filter-phobos': 'filter-phobos',
+  'upload-filter-heat': 'filter-heat'
+};
+
+var removeAllFilters = function () {
+  filterImagePreview.classList.remove('filter-none');
+  filterImagePreview.classList.remove('filter-chrome');
+  filterImagePreview.classList.remove('filter-sepia');
+  filterImagePreview.classList.remove('filter-marvin');
+  filterImagePreview.classList.remove('filter-phobos');
+  filterImagePreview.classList.remove('filter-heat');
+};
+
+function addFilter (evt) {
+  removeAllFilters();
+  filterImagePreview.classList.add(dictionary[evt.target.id]);
+};
+
+uploadFilterControls.addEventListener('click', addFilter);
+uploadFilterControls.addEventListener('keydown', function (evt) {
+  if (enterPressed(evt)) {
+    addFilter()
+    }
+});
+
+//------------------------------Масштаб---------------------------------------
+
 var uploadSection = document.querySelector('.upload');
-var filterNone = uploadSection.querySelector('#upload-filter-none');
-var filterChrome = uploadSection.querySelector('#upload-filter-chrome');
-var filterSepia = uploadSection.querySelector('#upload-filter-sepia');
-var filterMarvin = uploadSection.querySelector('#upload-filter-marvin');
-var filterPhobos = uploadSection.querySelector('#upload-filter-phobos');
-var filterHeat = uploadSection.querySelector('#upload-filter-heat');
 var imgPreview = uploadSection.querySelector('.filter-image-preview');
-
-
-
-filterNone.addEventListener('click', function() {
-    imgPreview.classList.remove('filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-none');
-});
-filterChrome.addEventListener('click', function() {
-    imgPreview.classList.remove('filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-chrome');
-});
-filterSepia.addEventListener('click', function() {
-    imgPreview.classList.remove('filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-sepia');
-});
-filterMarvin.addEventListener('click', function() {
-    imgPreview.classList.remove('filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-marvin');
-});
-filterPhobos.addEventListener('click', function() {
-    imgPreview.classList.remove('filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-phobos');
-});
-filterHeat.addEventListener('click', function() {
-    imgPreview.classList.remove('filter-none', 'filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-heat');
-});
-
 var resizeValue = fotoForm.querySelector('.upload-resize-controls-value');
 var resizeValueDec = fotoForm.querySelector('.upload-resize-controls-button-dec');
 var resizeValueInc = fotoForm.querySelector('.upload-resize-controls-button-inc');
 
 var resizeNumber = 100;
 resizeValue.setAttribute('value', '100%');
-
 
 var valueScaleChange = function() {
     var scaleNumber = resizeNumber / 100;
