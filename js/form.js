@@ -62,8 +62,9 @@ function addFilter (evt) {
 uploadFilterControls.addEventListener('click', addFilter);
 uploadFilterControls.addEventListener('keydown', function (evt) {
   if (enterPressed(evt)) {
-    addFilter()
-    }
+    removeAllFilters();
+    filterImagePreview.classList.add(dictionary[document.activeElement.htmlFor]);
+  }
 });
 
 //------------------------------Масштаб---------------------------------------
