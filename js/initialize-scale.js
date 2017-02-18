@@ -9,7 +9,7 @@ var resizeValueInc = uploadSection.querySelector('.upload-resize-controls-button
 window.initializeScale = function(element, resizeControlsValueDefault, step) {
     resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
     var resizeNumber = resizeControlsValueDefault;
-    element.addEventListener('click', function() {
+    function valueScaleChange(event) {
         if (event.target.contains(resizeValueDec)) {
             if (resizeNumber > step) {
                 resizeNumber = resizeNumber - step;
@@ -26,5 +26,6 @@ window.initializeScale = function(element, resizeControlsValueDefault, step) {
                 imgPreview.style.transform = 'scale(' + scaleNumber + ')';;
             }
         }
-    });
+    }
+    element.addEventListener('click', valueScaleChange);
 };
