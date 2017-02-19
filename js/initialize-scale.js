@@ -1,12 +1,9 @@
 'use strict';
 
-var uploadSection = document.querySelector('.upload');
-var imgPreview = uploadSection.querySelector('.filter-image-preview');
-var resizeValue = uploadSection.querySelector('.upload-resize-controls-value');
-var resizeValueDec = uploadSection.querySelector('.upload-resize-controls-button-dec');
-var resizeValueInc = uploadSection.querySelector('.upload-resize-controls-button-inc');
-
 window.initializeScale = function(element, resizeControlsValueDefault, step) {
+    var resizeValue = element.querySelector('.upload-resize-controls-value');
+    var resizeValueDec = element.querySelector('.upload-resize-controls-button-dec');
+    var resizeValueInc = element.querySelector('.upload-resize-controls-button-inc');
     resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
     var resizeNumber = resizeControlsValueDefault;
     function valueScaleChange(event) {
@@ -15,7 +12,7 @@ window.initializeScale = function(element, resizeControlsValueDefault, step) {
                 resizeNumber = resizeNumber - step;
                 var scaleNumber = resizeNumber / resizeControlsValueDefault;
                 resizeValue.value = resizeNumber + '%';
-                imgPreview.style.transform = 'scale(' + scaleNumber + ')';;
+                filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';;
             }
         }
         if (event.target.contains(resizeValueInc)) {
@@ -23,7 +20,7 @@ window.initializeScale = function(element, resizeControlsValueDefault, step) {
                 resizeNumber = resizeNumber + step;
                 var scaleNumber = resizeNumber / resizeControlsValueDefault;
                 resizeValue.value = resizeNumber + '%';
-                imgPreview.style.transform = 'scale(' + scaleNumber + ')';;
+                filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';;
             }
         }
     }

@@ -34,76 +34,9 @@ fotoFormClose.addEventListener('click', toggleSetup);
 
 
 //------------------------------фильтры---------------------------------------
-/*
-var uploadOverlay = document.querySelector('.upload-overlay');
-var filterImagePreview = uploadOverlay.querySelector('.filter-image-preview');
-var uploadFilterControls = uploadOverlay.querySelector('.upload-filter-controls');
 
-var dictionary = {
-    'upload-filter-chrome': 'filter-chrome',
-    'upload-filter-none': 'filter-none',
-    'upload-filter-sepia': 'filter-sepia',
-    'upload-filter-marvin': 'filter-marvin',
-    'upload-filter-phobos': 'filter-phobos',
-    'upload-filter-heat': 'filter-heat'
-};
-
-var removeAllFilters = function() {
-    filterImagePreview.classList.remove('filter-none');
-    filterImagePreview.classList.remove('filter-chrome');
-    filterImagePreview.classList.remove('filter-sepia');
-    filterImagePreview.classList.remove('filter-marvin');
-    filterImagePreview.classList.remove('filter-phobos');
-    filterImagePreview.classList.remove('filter-heat');
-};
-
-function addFilter(evt) {
-    if (evt.type === 'click') {
-        removeAllFilters();
-        filterImagePreview.classList.add(dictionary[evt.target.id]);
-    } else if (enterPressed(evt)) {
-        removeAllFilters();
-        filterImagePreview.classList.add(dictionary[document.activeElement.htmlFor]);
-    }
-};
-
-window.initializeFilters = function(element) {
-    element.addEventListener('click', addFilter);
-    element.addEventListener('keydown', addFilter);
-};
-*/
 window.initializeFilters(uploadFilterControls);
 
 //------------------------------Масштаб---------------------------------------
-/*
-var uploadSection = document.querySelector('.upload');
-var imgPreview = uploadSection.querySelector('.filter-image-preview');
-var resizeValue = uploadSection.querySelector('.upload-resize-controls-value');
-var resizeValueDec = uploadSection.querySelector('.upload-resize-controls-button-dec');
-var resizeValueInc = uploadSection.querySelector('.upload-resize-controls-button-inc');
 
-window.initializeScale = function(element, resizeControlsValueDefault, step) {
-    resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
-    var resizeNumber = resizeControlsValueDefault;
-    function valueScaleChange(event) {
-        if (event.target.contains(resizeValueDec)) {
-            if (resizeNumber > step) {
-                resizeNumber = resizeNumber - step;
-                var scaleNumber = resizeNumber / resizeControlsValueDefault;
-                resizeValue.value = resizeNumber + '%';
-                imgPreview.style.transform = 'scale(' + scaleNumber + ')';;
-            }
-        }
-        if (event.target.contains(resizeValueInc)) {
-            if (resizeNumber < resizeControlsValueDefault) {
-                resizeNumber = resizeNumber + step;
-                var scaleNumber = resizeNumber / resizeControlsValueDefault;
-                resizeValue.value = resizeNumber + '%';
-                imgPreview.style.transform = 'scale(' + scaleNumber + ')';;
-            }
-        }
-    }
-    element.addEventListener('click', valueScaleChange);
-};
-*/
 window.initializeScale(document.querySelector('.upload-resize-controls'), 100, 25);
