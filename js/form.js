@@ -11,22 +11,22 @@ var ESC_KEY_CODE = 27;
 
 function enterPressed(evt) {
   return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
-};
+}
 
 function setupEscEvent(evt) {
   if (evt.keyCode === ESC_KEY_CODE) {
-      toggleSetup();
-    }
+    toggleSetup();
+  }
 };
 
 var toggleSetup = function () {
   if (fotoForm.classList.contains('invisible')) {
-      fotoForm.classList.remove('invisible');
-      document.addEventListener('keydown', setupEscEvent);
-    } else {
-      fotoForm.classList.add('invisible');
-      document.removeEventListener('keydown', setupEscEvent);
-    }
+    fotoForm.classList.remove('invisible');
+    document.addEventListener('keydown', setupEscEvent);
+  } else {
+    fotoForm.classList.add('invisible');
+    document.removeEventListener('keydown', setupEscEvent);
+  }
 };
 
 window.enterPressed = enterPressed;

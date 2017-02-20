@@ -1,7 +1,5 @@
 'use strict';
 
-var uploadOverlay = document.querySelector('.upload-overlay');
-
 var dictionary = {
   'upload-filter-chrome': 'filter-chrome',
   'upload-filter-none': 'filter-none',
@@ -12,23 +10,23 @@ var dictionary = {
 };
 
 var removeAllFilters = function () {
-  filterImagePreview.classList.remove('filter-none');
-  filterImagePreview.classList.remove('filter-chrome');
-  filterImagePreview.classList.remove('filter-sepia');
-  filterImagePreview.classList.remove('filter-marvin');
-  filterImagePreview.classList.remove('filter-phobos');
-  filterImagePreview.classList.remove('filter-heat');
+  window.filterImagePreview.classList.remove('filter-none');
+  window.filterImagePreview.classList.remove('filter-chrome');
+  window.filterImagePreview.classList.remove('filter-sepia');
+  window.filterImagePreview.classList.remove('filter-marvin');
+  window.filterImagePreview.classList.remove('filter-phobos');
+  window.filterImagePreview.classList.remove('filter-heat');
 };
 
 function addFilter(evt) {
-    if (evt.type === 'click') {
+  if (evt.type === 'click') {
       removeAllFilters();
-      filterImagePreview.classList.add(dictionary[evt.target.id]);
+      window.filterImagePreview.classList.add(dictionary[evt.target.id]);
     } else if (window.enterPressed(evt)) {
       removeAllFilters();
-      filterImagePreview.classList.add(dictionary[document.activeElement.htmlFor]);
+      window.filterImagePreview.classList.add(dictionary[document.activeElement.htmlFor]);
     }
-};
+}
 
 window.initializeFilters = function (element) {
   element.addEventListener('click', addFilter);
