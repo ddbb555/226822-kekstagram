@@ -6,11 +6,12 @@ window.initializeScale = function (element, resizeControlsValueDefault, step) {
   var resizeValueInc = element.querySelector('.upload-resize-controls-button-inc');
   resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
   var resizeNumber = resizeControlsValueDefault;
+  var scaleNumber;
   function valueScaleChange(event) {
     if (event.target.contains(resizeValueDec)) {
       if (resizeNumber > step) {
         resizeNumber = resizeNumber - step;
-        var scaleNumber = resizeNumber / resizeControlsValueDefault;
+        scaleNumber = resizeNumber / resizeControlsValueDefault;
         resizeValue.value = resizeNumber + '%';
         window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
       }
@@ -18,7 +19,7 @@ window.initializeScale = function (element, resizeControlsValueDefault, step) {
     if (event.target.contains(resizeValueInc)) {
       if (resizeNumber < resizeControlsValueDefault) {
         resizeNumber = resizeNumber + step;
-        var scaleNumber = resizeNumber / resizeControlsValueDefault;
+        scaleNumber = resizeNumber / resizeControlsValueDefault;
         resizeValue.value = resizeNumber + '%';
         window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
       }
