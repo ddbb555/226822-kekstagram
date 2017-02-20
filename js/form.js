@@ -17,7 +17,7 @@ function setupEscEvent(evt) {
   if (evt.keyCode === ESC_KEY_CODE) {
     toggleSetup();
   }
-};
+}
 
 var toggleSetup = function () {
   if (fotoForm.classList.contains('invisible')) {

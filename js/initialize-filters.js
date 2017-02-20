@@ -20,12 +20,12 @@ var removeAllFilters = function () {
 
 function addFilter(evt) {
   if (evt.type === 'click') {
-      removeAllFilters();
-      window.filterImagePreview.classList.add(dictionary[evt.target.id]);
-    } else if (window.enterPressed(evt)) {
-      removeAllFilters();
-      window.filterImagePreview.classList.add(dictionary[document.activeElement.htmlFor]);
-    }
+    removeAllFilters();
+    window.filterImagePreview.classList.add(dictionary[evt.target.id]);
+  } else if (window.enterPressed(evt)) {
+    removeAllFilters();
+    window.filterImagePreview.classList.add(dictionary[document.activeElement.htmlFor]);
+  }
 }
 
 window.initializeFilters = function (element) {

@@ -8,21 +8,21 @@ window.initializeScale = function (element, resizeControlsValueDefault, step) {
   var resizeNumber = resizeControlsValueDefault;
   function valueScaleChange(event) {
     if (event.target.contains(resizeValueDec)) {
-        if (resizeNumber > step) {
-            resizeNumber = resizeNumber - step;
-            var scaleNumber = resizeNumber / resizeControlsValueDefault;
-            resizeValue.value = resizeNumber + '%';
-            window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
-          }
+      if (resizeNumber > step) {
+          resizeNumber = resizeNumber - step;
+          var scaleNumber = resizeNumber / resizeControlsValueDefault;
+          resizeValue.value = resizeNumber + '%';
+          window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
         }
+    }
     if (event.target.contains(resizeValueInc)) {
-        if (resizeNumber < resizeControlsValueDefault) {
-            resizeNumber = resizeNumber + step;
-            var scaleNumber = resizeNumber / resizeControlsValueDefault;
-            resizeValue.value = resizeNumber + '%';
-            filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
-          }
-      }
+      if (resizeNumber < resizeControlsValueDefault) {
+          resizeNumber = resizeNumber + step;
+          var scaleNumber = resizeNumber / resizeControlsValueDefault;
+          resizeValue.value = resizeNumber + '%';
+          window.filterImagePreview.style.transform = 'scale(' + scaleNumber + ')';
+        }
+    }
   }
   element.addEventListener('click', valueScaleChange);
 };
