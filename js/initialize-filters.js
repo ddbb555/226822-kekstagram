@@ -22,5 +22,5 @@ window.initializeFilters = (function () {
         }
       }
     });
-    };
+  };
 })();
