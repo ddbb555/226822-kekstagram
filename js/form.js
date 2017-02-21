@@ -5,21 +5,16 @@ var fotoForm = document.querySelector('.upload-overlay');
 var fotoFormClose = fotoForm.querySelector('#upload-cancel');
 var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var filterImagePreview = document.querySelector('.filter-image-preview');
-
-var ENTER_KEY_CODE = 13;
-var ESC_KEY_CODE = 27;
-
-function enterPressed(evt) {
-  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
-}
+var SCALE_STEP = 25;
+var SCALE_DEFAULT_VALUE = 100;
 
 function setupEscEvent(evt) {
-  if (evt.keyCode === ESC_KEY_CODE) {
+  if (window.utils.isDeactivationEvent(evt)) {
     toggleSetup();
   }
 }
 
-var toggleSetup = function () {
+function toggleSetup(evt) {
   if (fotoForm.classList.contains('invisible')) {
     fotoForm.classList.remove('invisible');
     document.addEventListener('keydown', setupEscEvent);
@@ -27,14 +22,11 @@ var toggleSetup = function () {
     fotoForm.classList.add('invisible');
     document.removeEventListener('keydown', setupEscEvent);
   }
-};
-
-window.enterPressed = enterPressed;
-window.filterImagePreview = filterImagePreview;
+}
 
 uploadForm.addEventListener('change', toggleSetup);
 fotoFormClose.addEventListener('click', toggleSetup);
 
-window.initializeFilters(uploadFilterControls);
-
-window.initializeScale(document.querySelector('.upload-resize-controls'), 100, 25);
+window.initializeFilters(filterImagePreview, uploadFilterControls, 'click');
+window.initializeFilters(filterImagePreview, uploadFilterControls, 'keydown');
+window.initializeScale(document.querySelector('.upload-resize-controls'), SCALE_DEFAULT_VALUE, SCALE_STEP);
