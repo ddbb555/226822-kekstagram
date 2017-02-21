@@ -12,16 +12,14 @@ window.initializeFilters = (function() {
 
     return function(previewScreen, setOfFilters, eventType) {
         setOfFilters.addEventListener(eventType, function(evt) {
-            if (evt.type === 'click') {
-                for (var prop in dictionary) {
+            for (var prop in dictionary) {
+                if (evt.type === 'click') {
                     previewScreen.classList.remove(dictionary[prop]);
-                }
-                previewScreen.classList.add(dictionary[evt.target.id]);
-            } else if (window.utils.isActivationEvent(evt)) {
-                for (var prop in dictionary) {
+                    previewScreen.classList.add(dictionary[evt.target.id]);
+                } else if (window.utils.isActivationEvent(evt)) {
                     previewScreen.classList.remove(dictionary[prop]);
+                    previewScreen.classList.add(dictionary[document.activeElement.htmlFor]);
                 }
-                previewScreen.classList.add(dictionary[document.activeElement.htmlFor]);
             }
         })
     };
