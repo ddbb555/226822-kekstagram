@@ -2,14 +2,14 @@
 
 window.initializeScale = (function () {
   return function (element, resizeControlsValueDefault, step) {
-  var resizeValue = element.querySelector('.upload-resize-controls-value');
-  var resizeValueDec = element.querySelector('.upload-resize-controls-button-dec');
-  var resizeValueInc = element.querySelector('.upload-resize-controls-button-inc');
-  resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
-  var resizeNumber = resizeControlsValueDefault;
-  var scaleNumber;
+    var resizeValue = element.querySelector('.upload-resize-controls-value');
+    var resizeValueDec = element.querySelector('.upload-resize-controls-button-dec');
+    var resizeValueInc = element.querySelector('.upload-resize-controls-button-inc');
+    resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
+    var resizeNumber = resizeControlsValueDefault;
+    var scaleNumber;
 
-  function valueScaleChange(event) {
+    function valueScaleChange(event) {
     if (event.target.contains(resizeValueDec)) {
       if (resizeNumber > step) {
         resizeNumber = resizeNumber - step;
@@ -27,6 +27,6 @@ window.initializeScale = (function () {
       }
     }
   }
-  element.addEventListener('click', valueScaleChange);
-};
+    element.addEventListener('click', valueScaleChange);
+  };
 })();

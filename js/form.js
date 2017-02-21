@@ -14,7 +14,7 @@ function setupEscEvent(evt) {
   }
 }
 
-function toggleSetup (evt) {
+function toggleSetup(evt) {
   if (fotoForm.classList.contains('invisible')) {
     fotoForm.classList.remove('invisible');
     document.addEventListener('keydown', setupEscEvent);
@@ -22,7 +22,7 @@ function toggleSetup (evt) {
     fotoForm.classList.add('invisible');
     document.removeEventListener('keydown', setupEscEvent);
   }
-};
+}
 
 uploadForm.addEventListener('change', toggleSetup);
 fotoFormClose.addEventListener('click', toggleSetup);
