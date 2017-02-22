@@ -17,7 +17,7 @@ window.initializeFilters = (function () {
           previewScreen.classList.remove(dictionary[prop]);
           callback(dictionary[evt.target.id]);
         }
-        else if (window.utils.isActivationEvent(evt)) {
+        if (window.utils.isActivationEvent(evt)) {
           previewScreen.classList.remove(dictionary[prop]);
           callback(dictionary[document.activeElement.htmlFor]);
         }

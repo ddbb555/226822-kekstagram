@@ -5,7 +5,7 @@ var fotoForm = document.querySelector('.upload-overlay');
 var fotoFormClose = fotoForm.querySelector('#upload-cancel');
 var uploadFilterControls = document.querySelector('.upload-filter-controls');
 var filterImagePreview = document.querySelector('.filter-image-preview');
-var uploadResizeControls = document.querySelector('.upload-resize-controls')
+var uploadResizeControls = document.querySelector('.upload-resize-controls');
 var SCALE_STEP = 25;
 var SCALE_DEFAULT_VALUE = 100;
 
@@ -28,13 +28,13 @@ function toggleSetup(evt) {
 uploadForm.addEventListener('change', toggleSetup);
 fotoFormClose.addEventListener('click', toggleSetup);
 
-var onClickOrOnKeydown = function (control) {
+var activationHandler = function (control) {
   filterImagePreview.classList.add(control);
 };
 var scaleApply = function (scale, scaleDefault) {
   filterImagePreview.style.transform = 'scale(' + scale / scaleDefault + ')';
 };
 
-window.initializeFilters(filterImagePreview, uploadFilterControls, 'click', onClickOrOnKeydown);
-window.initializeFilters(filterImagePreview, uploadFilterControls, 'keydown', onClickOrOnKeydown);
+window.initializeFilters(filterImagePreview, uploadFilterControls, 'click', activationHandler);
+window.initializeFilters(filterImagePreview, uploadFilterControls, 'keydown', activationHandler);
 window.initializeScale(uploadResizeControls, SCALE_DEFAULT_VALUE, SCALE_STEP, scaleApply);

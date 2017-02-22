@@ -7,7 +7,6 @@ window.initializeScale = (function () {
     var resizeValueInc = element.querySelector('.upload-resize-controls-button-inc');
     resizeValue.setAttribute('value', resizeControlsValueDefault + '%');
     var resizeNumber = resizeControlsValueDefault;
-    
     function valueScaleChange(event) {
       if (event.target.contains(resizeValueDec)) {
         if (resizeNumber > step) {
