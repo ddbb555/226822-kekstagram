@@ -10,15 +10,16 @@ window.initializeFilters = (function () {
     'upload-filter-heat': 'filter-heat'
   };
 
-  return function (previewScreen, setOfFilters, eventType) {
+  return function (previewScreen, setOfFilters, eventType, callback) {
     setOfFilters.addEventListener(eventType, function (evt) {
       for (var prop in dictionary) {
         if (evt.type === 'click') {
           previewScreen.classList.remove(dictionary[prop]);
-          previewScreen.classList.add(dictionary[evt.target.id]);
-        } else if (window.utils.isActivationEvent(evt)) {
+          callback(dictionary[evt.target.id]);
+        }
+        else if (window.utils.isActivationEvent(evt)) {
           previewScreen.classList.remove(dictionary[prop]);
-          previewScreen.classList.add(dictionary[document.activeElement.htmlFor]);
+          callback(dictionary[document.activeElement.htmlFor]);
         }
       }
     });
