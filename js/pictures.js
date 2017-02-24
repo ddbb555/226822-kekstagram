@@ -28,4 +28,4 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
           window.showGallery(pictureBlock);
         });
       });
-    });;
+    });
