@@ -9,7 +9,7 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       var pictureClone = templateElement.content.querySelector('.picture');
       var pictureContainer = document.querySelector('.pictures');
 
-      pictures.forEach(function (pictureItem) {	
+      pictures.forEach(function (pictureItem) {
         var picture = pictureClone.cloneNode(true);
         var image = picture.querySelector('img');
         var comments = picture.querySelector('.picture-comments');
@@ -23,9 +23,9 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
           likesCount: pictureItem.likes,
           commentsCount: pictureItem.comments.length
         };
-        picture.addEventListener('click', function (evt) {
-          evt.preventDefault();
+        picture.addEventListener('click', function (e) {
+          e.preventDefault();
           window.showGallery(pictureBlock);
         });
       });
-});
+    });;
