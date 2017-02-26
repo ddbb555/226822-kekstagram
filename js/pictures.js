@@ -10,11 +10,11 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       var pictureFilters = document.querySelector('.filters');
       var pictureArrCommented = pictures.slice(0);
 
-      function sortArray(array) {
-        array.sort(function (leftElement, rightElement) {
-          return rightElement.commentsLength - leftElement.commentsLength;
-        });
-        return array;
+      function sortMostCommented(arr) {
+        function compareObj(left, right) {
+          return right.comments.length - left.comments.length;
+        }
+        return arr.sort(compareObj);
       }
 
       function getRandomArrFromArr(arr, n) {
@@ -60,7 +60,7 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
             break;
           case ('filter-discussed'):
             cleanGallery(pictureContainer);
-            sortArray(pictureArrCommented);
+            sortMostCommented(pictureArrCommented);
             renderPictures(pictureArrCommented);
             break;
         }
