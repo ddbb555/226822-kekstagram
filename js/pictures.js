@@ -10,24 +10,17 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       var pictureFilters = document.querySelector('.filters');
       var pictureArrCommented = pictures.slice(0);
 
-      var sortFunc = function (array) {
-        array.sort(function (left, right) {
-          return right.comments.length - left.comments.length;
+      function sortArray(array) {
+        array.sort(function (leftElement, rightElement) {
+          return rightElement.commentsLength - leftElement.commentsLength;
         });
-      };
+        return array;
+      }
 
       function getRandomArrFromArr(arr, n) {
-        var randomArr = new Array(n);
-        var len = arr.length;
-        var taken = new Array(len);
-        if (n > len) {
-          throw new RangeError('getRandom: more elements taken than available');
-        }
-        while (n--) {
-          var x = Math.floor(Math.random() * len);
-          randomArr[n] = arr[x in taken ? taken[x] : x];
-          taken[x] = --len;
-        }
+        var shuffleArr = arr.sort(function() {return Math.random() - 0.5})
+        var elemToSortAmount = n;
+        var randomArr = shuffleArr.slice(0, elemToSortAmount);
         return randomArr;
       }
 
@@ -37,8 +30,8 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
         }
       };
 
-      var renderPictures = function (element) {
-        element.forEach(function (pictureItem) {
+      var renderPictures = function (elements) {
+        elements.forEach(function (pictureItem) {
           var picture = pictureFrame.cloneNode(true);
           var image = picture.querySelector('img');
           var comments = picture.querySelector('.picture-comments');
@@ -48,14 +41,9 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
           likes.textContent = pictureItem.likes;
           picture.setAttribute('tabindex', '0');
           pictureContainer.appendChild(picture);
-          var pictureBlock = {
-            link: pictureItem.url,
-            likesCount: pictureItem.likes,
-            commentsCount: pictureItem.comments.length
-          };
           picture.addEventListener('click', function (event) {
             event.preventDefault();
-            window.showGallery(pictureBlock);
+            window.showGallery(pictureItem);
           });
         });
       };
@@ -72,7 +60,7 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
             break;
           case ('filter-discussed'):
             cleanGallery(pictureContainer);
-            sortFunc(pictureArrCommented);
+            sortArray(pictureArrCommented);
             renderPictures(pictureArrCommented);
             break;
         }
@@ -92,4 +80,4 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
           filterToggle(event.target.htmlFor);
         }
       });
-    });
+});

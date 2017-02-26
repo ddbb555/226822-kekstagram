@@ -21,9 +21,9 @@ window.showGallery = (function () {
 
   return function showGallery(param) {
     galleryOverlay.classList.remove('invisible');
-    galleryImage.setAttribute('src', param.link);
-    galleryLikes.textContent = param.likesCount;
-    galleryComments.textContent = param.commentsCount;
+    galleryImage.setAttribute('src', param.url);
+    galleryLikes.textContent = param.likes;
+    galleryComments.textContent = param.comments.length;
     closeGallery();
   };
 })();
