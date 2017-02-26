@@ -10,13 +10,6 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       var pictureFilters = document.querySelector('.filters');
       var pictureArrCommented = pictures.slice(0);
 
-      function sortMostCommented(arr) {
-        function compareObj(left, right) {
-          return right.comments.length - left.comments.length;
-        }
-        return arr.sort(compareObj);
-      }
-
       var cleanGallery = function (param) {
         while (param.firstChild) {
           param.removeChild(param.firstChild);
