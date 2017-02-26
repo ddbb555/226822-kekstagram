@@ -18,7 +18,8 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       }
 
       function getRandomArrFromArr(arr, n) {
-        var shuffleArr = arr.sort(function() {return Math.random() - 0.5})
+        var shuffleArr = arr.sort(function () { 
+          return Math.random() - 0.5}; );
         var elemToSortAmount = n;
         var randomArr = shuffleArr.slice(0, elemToSortAmount);
         return randomArr;
@@ -80,4 +81,4 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
           filterToggle(event.target.htmlFor);
         }
       });
-});
+    });
