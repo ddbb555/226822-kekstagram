@@ -17,15 +17,6 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
         return arr.sort(compareObj);
       }
 
-      function getRandomArrFromArr(arr, n) {
-        var shuffleArr = arr.sort(function () {
-          return Math.random() - 0.5;
-        });
-        var elemToSortAmount = n;
-        var randomArr = shuffleArr.slice(0, elemToSortAmount);
-        return randomArr;
-      }
-
       var cleanGallery = function (param) {
         while (param.firstChild) {
           param.removeChild(param.firstChild);
@@ -50,20 +41,23 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
         });
       };
 
-      function filterToggle(condition) {
+      function filterToggle(condition, pictures) {
         switch (condition) {
           case ('filter-popular'):
             cleanGallery(pictureContainer);
-            renderPictures(pictures);
+            return pictures.slice(0).sort()
             break;
           case ('filter-new'):
             cleanGallery(pictureContainer);
-            renderPictures(getRandomArrFromArr(pictures.slice(0), 10));
+            return pictures.slice(0).sort(function () {
+              return Math.random() - 0.5;
+            }).slice(0, 10);
             break;
           case ('filter-discussed'):
             cleanGallery(pictureContainer);
-            sortMostCommented(pictureArrCommented);
-            renderPictures(pictureArrCommented);
+            return pictures.slice(0).sort(function (left, right) {
+              return right.comments.length - left.comments.length;
+            });
             break;
         }
       }
@@ -73,7 +67,8 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       renderPictures(pictures);
 
       pictureFilters.addEventListener('click', function (event) {
-        filterToggle(event.target.htmlFor);
+        var condition = event.target.htmlFor;
+        renderPictures(filterToggle(condition, pictures));
       });
 
       pictureFilters.addEventListener('keydown', function (event) {
@@ -83,3 +78,5 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
         }
       });
     });
+
+
