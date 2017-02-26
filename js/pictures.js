@@ -67,7 +67,7 @@ window.load('https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/da
       pictureFilters.addEventListener('keydown', function (event) {
         if (window.utils.isActivationEvent(event)) {
           event.target.control.checked = true;
-          filterToggle(event.target.htmlFor);
+          renderPictures(filterToggle(condition, pictures));
         }
       });
     });
